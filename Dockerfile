@@ -1,19 +1,19 @@
-# VERSION 2.2.3
-# AUTHOR: Steven Brandt (@ednarb29)
+# VERSION 2.3.0
+# AUTHOR: Saurabh Bansal (@sbansal6)
 # DESCRIPTION: Basic Airflow container
-# BUILD: docker build --rm -t ednarb29/docker-airflow .
-# SOURCE: https://github.com/ednarb29/docker-airflow
+# BUILD: docker build --rm -t sbansal/docker-airflow .
+# SOURCE: https://github.com/sbansal84/docker-airflow
 # BASED ON: https://github.com/puckel/docker-airflow (Matthieu "Puckel_" Roisil)
 
 FROM python:3.8-slim-buster
-LABEL maintainer="ednarb29"
+LABEL maintainer="sbansal6"
 
 # Never prompt the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
 # Airflow
-ARG AIRFLOW_VERSION=2.2.3
+ARG AIRFLOW_VERSION=2.3.0
 ARG AIRFLOW_USER_HOME=/usr/local/airflow
 ARG AIRFLOW_DEPS=""
 ARG PYTHON_DEPS="wtforms==2.3.3"

@@ -17,21 +17,21 @@ This repository contains **Dockerfile** of [apache-airflow](https://github.com/a
 
 ## Installation
 
-Up to this moment, there is no public image `ednarb29/docker-airflow:2.2.3`, so we have to build it. After cloning this repo, you may do
+Up to this moment, there is no public image `sbansal/docker-airflow:2.3.0`, so we have to build it. After cloning this repo, you may do
 
-    docker build -t ednarb29/docker-airflow:2.2.3 .
+    docker build -t sbansal/docker-airflow:2.3.0 .
 
 
 ## Build
 
 Optionally install [Extra Airflow Packages](https://airflow.incubator.apache.org/installation.html#extra-package) and/or python dependencies at build time :
 
-    docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" -t ednarb29/docker-airflow:2.2.3 .
-    docker build --rm --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t ednarb29/docker-airflow:2.2.3 .
+    docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" -t sbansal/docker-airflow:2.3.0 .
+    docker build --rm --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t sbansal/docker-airflow:2.3.0 .
 
 or combined
 
-    docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t ednarb29/docker-airflow:2.2.3 .
+    docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t sbansal/docker-airflow:2.3.0 .
 
 Don't forget to update the airflow images in the docker-compose files to ednarb29/docker-airflow:latest.
 
@@ -41,7 +41,7 @@ Make sure to modify the passwords in the secrets directory.
 
 By default, docker-airflow runs Airflow with **SequentialExecutor** :
 
-    docker run -d -p 8080:8080 ednarb29/docker-airflow:2.2.3 webserver
+    docker run -d -p 8080:8080 sbansal/docker-airflow:2.3.0 webserver
 
 If you want to run another executor, use the other docker-compose.yml files provided in this repository.
 
@@ -57,7 +57,7 @@ NB : If you want to have DAGs example loaded (default=False), you've to set the 
 
 `LOAD_EX=n`
 
-    docker run -d -p 8080:8080 -e LOAD_EX=y ednarb29/docker-airflow:2.2.3
+    docker run -d -p 8080:8080 -e LOAD_EX=y sbansal/docker-airflow:2.3.0
 
 If you want to use Ad hoc query, make sure you've configured connections:
 Go to Admin -> Connections and Edit "postgres_default" set this values (equivalent to values in airflow.cfg and secrets/*.env) :
@@ -68,7 +68,7 @@ Go to Admin -> Connections and Edit "postgres_default" set this values (equivale
 
 For encrypted connection passwords (in Local or Celery Executor), you must have the same fernet_key. By default docker-airflow generates the fernet_key at startup, you have to set an environment variable in the docker-compose (ie: docker-compose-LocalExecutor.yml) file to set the same key accross containers. To generate a fernet_key :
 
-    docker run ednarb29/docker-airflow:2.2.3 python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
+    docker run sbansal/docker-airflow:2.3.0 python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
 
 ## Configuring Airflow
 
@@ -117,7 +117,7 @@ This can be used to scale to a multi node setup using docker swarm.
 
 If you want to run other airflow sub-commands, such as `list_dags` or `clear` you can do so like this:
 
-    docker run --rm -ti ednarb29/docker-airflow:2.2.3 airflow list_dags
+    docker run --rm -ti sbansal/docker-airflow:2.3.0 airflow list_dags
 
 or with your docker-compose set up like this:
 
@@ -125,8 +125,8 @@ or with your docker-compose set up like this:
 
 You can also use this to run a bash shell or any other command in the same environment that airflow would be run in:
 
-    docker run --rm -ti ednarb29/docker-airflow:2.2.3 bash
-    docker run --rm -ti ednarb29/docker-airflow:2.2.3 ipython
+    docker run --rm -ti sbansal/docker-airflow:2.3.0 bash
+    docker run --rm -ti sbansal/docker-airflow:2.3.0 ipython
 
 # Simplified SQL database configuration using PostgreSQL
 
